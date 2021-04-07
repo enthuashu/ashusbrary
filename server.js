@@ -1,4 +1,6 @@
-
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 const express = require('express')
 const app = express()
@@ -19,7 +21,7 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 
 const mongoose = require('mongoose')
-mongoose.connect("mongodb+srv://enthuashu:8957885798@cluster0.t3uca.mongodb.net/AshusPortal?retryWrites=true&w=majority", {
+mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser:true
    
 })
